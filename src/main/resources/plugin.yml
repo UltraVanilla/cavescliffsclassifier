@@ -1,0 +1,11 @@
+main: ${PACKAGE}.${NAME}
+name: ${NAME}
+version: "${VERSION}"
+api-version: "1.18"
+author: lordpipe
+description: Plugin to notify the user when they enter chunks of a specific version
+commands:
+  chunkversion:
+    description: Check the version this chunk was generated in
+    usage: /chunkversion
+    permission: cavescliffsclassifier.chunkversion

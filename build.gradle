@@ -1,0 +1,24 @@
+plugins {
+    id "java"
+}
+
+group "lordpipe.cavescliffsclassifier"
+version "1.0.0"
+
+sourceCompatibility = JavaVersion.VERSION_17
+targetCompatibility = JavaVersion.VERSION_17
+
+repositories {
+    mavenCentral()
+    maven { url "https://papermc.io/repo/repository/maven-public/" }
+}
+
+dependencies {
+    compileOnly "io.papermc.paper:paper-api:1.18.2-R0.1-SNAPSHOT"
+}
+
+processResources {
+    filesMatching("**/plugin.yml") {
+        expand ( NAME: rootProject.name, VERSION: version, PACKAGE: project.group.toString() )
+    }
+}

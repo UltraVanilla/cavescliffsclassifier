@@ -1,0 +1,6 @@
+worlds:
+  main: world
+  nether: world_nether
+version-names:
+  - "1.18+"
+  - "1.13 - 1.17"
