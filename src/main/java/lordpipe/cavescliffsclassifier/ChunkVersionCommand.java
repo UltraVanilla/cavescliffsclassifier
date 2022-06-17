@@ -38,7 +38,7 @@ public class ChunkVersionCommand implements CommandExecutor {
 
             int locationRegionIndex = (locationX & 0xff) | ((locationZ & 0xff) << 8);
 
-            int locationVersion = BitManipulation.getBit(locationData, locationRegionIndex);
+            int locationVersion = BitManipulation.getSubBits(locationData, locationRegionIndex);
 
             player.sendMessage("You are in " + plugin.getConfig().getStringList("version-names").get(locationVersion) + " chunks.");
 

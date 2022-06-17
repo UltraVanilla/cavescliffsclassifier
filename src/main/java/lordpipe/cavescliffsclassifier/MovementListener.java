@@ -40,8 +40,8 @@ public class MovementListener implements Listener {
             int fromRegionIndex = (fromX & 0xff) | ((fromZ & 0xff) << 8);
             int toRegionIndex = (toX & 0xff) | ((toZ & 0xff) << 8);
 
-            int fromVersion = BitManipulation.getBit(fromData, fromRegionIndex);
-            int toVersion = BitManipulation.getBit(toData, toRegionIndex);
+            int fromVersion = BitManipulation.getSubBits(fromData, fromRegionIndex);
+            int toVersion = BitManipulation.getSubBits(toData, toRegionIndex);
 
             if (fromWorld != toWorld) {
                 fromVersion = -1;

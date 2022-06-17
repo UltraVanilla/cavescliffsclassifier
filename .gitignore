@@ -239,3 +239,5 @@ gradle-app.setting
 .classpath
 
 # End of https://www.toptal.com/developers/gitignore/api/vim,java,linux,macos,windows,intellij+all,gradle,metals
+.settings/
+bin/
