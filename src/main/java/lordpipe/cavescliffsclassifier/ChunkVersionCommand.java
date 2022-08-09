@@ -30,17 +30,21 @@ public class ChunkVersionCommand implements CommandExecutor {
                 player.sendMessage("You must be in the overworld or nether for this to work.");
                 return true;
             }
+            plugin.executor.execute(() -> {
 
-            int locationX = (int) (((long) location.getX()) >> 4);
-            int locationZ = (int) (((long) location.getZ()) >> 4);
+                int locationX = (int) (((long) location.getX()) >> 4);
+                int locationZ = (int) (((long) location.getZ()) >> 4);
 
-            byte[] locationData = plugin.data.computeIfAbsent(BitManipulation.compact(locationX >> 8, locationZ >> 8), k -> new byte[8192]);
+                byte[] locationData = plugin.smartGetData(locationX, locationZ);
 
-            int locationRegionIndex = (locationX & 0xff) | ((locationZ & 0xff) << 8);
+                int locationRegionIndex = (locationX & 0xff) | ((locationZ & 0xff) << 8);
 
-            int locationVersion = BitManipulation.getSubBits(locationData, locationRegionIndex);
+                int locationVersion = BitManipulation.getSubBits(locationData, locationRegionIndex);
 
-            player.sendMessage("You are in " + plugin.getConfig().getStringList("version-names").get(locationVersion) + " chunks.");
+                plugin.getServer().getScheduler().scheduleSyncDelayedTask(plugin, () -> {
+                    player.sendMessage(plugin.mm.deserialize("You are in <bold>" + plugin.getConfig().getStringList("version-names").get(locationVersion) + "</bold> chunks."));
+                }, 0);
+            });
 
             return true;
         } else {
